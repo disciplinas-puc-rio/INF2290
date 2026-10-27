@@ -1,4 +1,4 @@
-namespace TuringMachine
+namespace TuringMachine.Basic
 
 abbrev Word := List Bool
 
@@ -48,4 +48,4 @@ def RecognizesLanguageL {State : Type} (M : CrossingTM State)
   ∀ w w' : Word, w.length = w'.length →
     (M.accepts (leftPart w) (rightPart w') ↔ w = w')
 
-end TuringMachine
+end TuringMachine.Basic

@@ -1,13 +1,18 @@
-import Mathlib.Data.Nat.Basic
 import KolmogorovBounds.PrimeNumbers.Basic
 import KolmogorovBounds.PrimeNumbers.Lemma
+import Mathlib.Data.Nat.Basic
 import Mathlib.Tactic.Linarith
 import Mathlib.Data.Nat.Prime.Basic
+
+/-!
+# Teoremas sobre Números Primos e Complexidade de Kolmogorov
+-/
+namespace KolmogorovBounds
+
 
 set_option linter.style.header false
 set_option linter.style.longLine false
 
-namespace KolmogorovBounds.Theorem
 
 /--
 Exercício 9.3:
@@ -130,4 +135,4 @@ theorem ex_9_6_incompressible_not_prime (n K_n log_n log_m : ℕ)
   have h := h_prime_encoding h_is_prime
   omega
 
-end KolmogorovBounds.Theorem
+end KolmogorovBounds
