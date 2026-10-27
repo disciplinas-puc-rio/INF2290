@@ -17,8 +17,7 @@ def wordLen (w : Word) : ℕ := w.length
 
 /--
 Em vez de construir um compilador inteiro dentro do Lean para definir `K(w)`,
-modelamos um "Sistema de Complexidade de Kolmogorov" pelas duas únicas propriedades
-que o PDF usa em todos os exercícios:
+modelamos um "Sistema de Complexidade de Kolmogorov" por duas únicas propriedades:
 
 1. Toda palavra tem um custo mínimo de descrição `K(w)`.
 2. Uma palavra `w` é "incompressível" (Kolmogorov-aleatória) se `K(w) ≥ |w|`.
@@ -27,8 +26,7 @@ structure KolmogorovSystem where
   /-- Função que dá o tamanho da menor receita que gera a palavra `w` -/
   K : Word → ℕ
 
-/-- Definição do texto (pág. 77): Uma palavra `x` é Kolmogorov-aleatória
-(incompressível) se `K(x) ≥ |x|`. -/
+/-- Uma palavra `x` é Kolmogorov-aleatória (incompressível) se `K(x) ≥ |x|`. -/
 def IsIncompressible (sys : KolmogorovSystem) (x : Word) : Prop :=
   sys.K x ≥ x.length
 
@@ -41,16 +39,15 @@ def IsIncompressibleNat (K_n log_n : ℕ) : Prop :=
 
 /-!
 # Bloco 2: Ferramentas do Escopo 1 (Matemático / Códigos Auto-delimitados)
-Nas páginas 78 e 79 (Exercícios 9.3, 9.4 e 9.5), o texto define:
 
 1. O código de barra `\overline{w}`: insere `0` (`false`) após cada bit, exceto o último que leva `1` (`true`).
-   (Obs: para facilitar sua indução no Lean, note que `\overline{w}` sempre dobra o tamanho: `|\overline{w}| = 2 * |w|`).
+   (Obs: `\overline{w}` sempre dobra o tamanho: `|\overline{w}| = 2 * |w|`).
 
 2. O código com etiqueta: `code(w) = \overline{bin(|w|)} ++ w`.
 -/
 
 /--
-Codificação `\overline{w}` (pág. 78):
+Codificação `\overline{w}`:
 Para cada bit da palavra, dobramos o tamanho colocando um marcador logo depois.
 - Na última letra `[a]`, colocamos `[a, true]` (representando `a1`).
 - Nas demais `a :: as`, colocamos `a :: false :: barCode as` (representando `a0...`).
